@@ -4,6 +4,7 @@ from products.models import Product
 from django.db.models.signals import post_save
 # библ. для создания авторизации пользователя
 from django.contrib.auth.models import User
+from utils.main import disable_for_loaddata
 
 
 class Status(models.Model):
@@ -91,6 +92,7 @@ class ProductInOrder(models.Model):
         super(ProductInOrder, self).save(*args, **kwargs)
 
 # Специальная функция которая отрабатывает после метода save выше
+@disable_for_loaddata
 def product_in_order_post_save(sender, instance, created, **kwargs):
     # создаем список активных заказов
     order = instance.order
