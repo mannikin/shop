@@ -108,8 +108,6 @@ def checkout(request):
                                                   order=order,)
 
 
-
-
     else:
         print("No")
     return render(request, 'orders/checkout.html', locals())

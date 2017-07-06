@@ -49,7 +49,7 @@ $(document).ready(function() {
                         $('.basket-items ul').append('<li>'+v.name+', ' + v.nmb + 'шт. ' + 'по ' +v.price_per_item+ ' UAH ' +
                         '<a class="delete-item" href="" data-product_id="'+v.id+'"> X</a>' +
                         '</li>');
-                    })
+                    });
                 }
             },
             error: function() {
@@ -82,7 +82,7 @@ $(document).ready(function() {
     });
 
     // toggleClass - добавляет класс если нет, удаляет если есть
-    function shovingBasket(){
+    function showingBasket(){
        $('.basket-items').removeClass('hidden');
     }
     //on - перечисляем события(клик или наведение) на кнопку "корзина"
@@ -91,8 +91,8 @@ $(document).ready(function() {
     //     //убираем  класс hidden чтобы панель появилась
     //     shovingBasket()
     // });
-    $('.basket-container').mouseover('click', function () {
-        shovingBasket()
+    $('.basket-container').mouseover(function () {
+        showingBasket();
     });
 
     // $('.basket-container').mouseout('click', function () {
@@ -107,8 +107,9 @@ $(document).ready(function() {
 
         product_id = $(this).data("product_id");
         nmb = 0;
-        basketUpdating(product_id, nmb, is_delete=true)
-    })
+        basketUpdating(product_id, nmb, is_delete=true);
+        console.log();
+    });
 
     function calculatingBasketAmount() {
         var total_order_amount = 0;
@@ -121,11 +122,11 @@ $(document).ready(function() {
         $('#total_order_amount').text(total_order_amount.toFixed(2))
     }
 
-    //отслеживаем изменение кол-ва отдельного товара в чекайте
+    //отслеживаем изменение кол-ва отдельного товара в чекауте
     $(document).on('change', ".product-in-basket-nmb", function(){
         var current_nmb = $(this).val();
         console.log(current_nmb);
-        //находим значение длижайшего тега <TR> где мы меняем кол-во
+        //находим значение ближайшего тега <TR> где мы меняем кол-во
         //обычно следующий
         var current_tr = $(this).closest('tr');
                 //иЩем нужный span с таким классом ↓, и берем из него текст и INTуем
