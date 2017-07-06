@@ -117,3 +117,7 @@ html, body{
 .form-error{
     color: red;
 }
+.checkout{
+    position: absolute;
+    top: 25%;
+}
